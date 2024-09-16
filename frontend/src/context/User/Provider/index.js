@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import UserContext from '../Context';
 import UserData from '../../../data/users.json';
+import { get } from '../../../utils/Local Storage';
 
 const UserProvider = ({ children }) => {
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
 
-    const loginHandler = (event) => {
-        event.preventDefault();
-
+    const login = async () => {
         // TODO: Replace with API Call
 
         let json = {
@@ -30,19 +29,24 @@ const UserProvider = ({ children }) => {
                 }
             }
         }
-        console.log(json);
-        if(json.success)
-        {
-            
-        }
-        else
-        {
 
+        return json.success ? email : "";
+    };
+
+    const userDetails = () => {
+        const temp = get("authToken");
+        for(let user of UserData)
+        {
+            if(user.email === temp)
+            {
+                return user;
+            }
         }
+        return {};
     };
 
     return (
-        <UserContext.Provider value={{ email, setEmail, password, setPassword, loginHandler }}>
+        <UserContext.Provider value={{ email, setEmail, password, setPassword, login, userDetails }}>
             { children }
         </UserContext.Provider>
     )

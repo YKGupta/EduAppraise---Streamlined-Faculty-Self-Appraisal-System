@@ -7,11 +7,24 @@ import {
 	RouterProvider,
 } from "react-router-dom";
 import UserProvider from './context/User/Provider';
+import Login from './pages/Login';
+import 'react-toastify/dist/ReactToastify.css';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App />,
+		children: [
+			{
+				path: "login",
+				element: <Login />
+			},
+			{
+				path: "home",
+				element: <Home />
+			}
+		]
 	},
 ]);
 
