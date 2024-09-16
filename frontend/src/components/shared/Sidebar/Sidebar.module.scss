@@ -1,8 +1,8 @@
 .container{
+    position: fixed;
     display: grid;
     grid-template-rows: 2fr 4fr 2fr;
-    background-color: rgba(53, 7, 33, 0.5);
-    backdrop-filter: blur(10px);
+    background-color: rgba(7, 44, 43);
     width: 5%;
     height: 100vh;
     color: white;

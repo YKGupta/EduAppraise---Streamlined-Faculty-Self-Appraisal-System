@@ -10,6 +10,7 @@ import UserProvider from './context/User/Provider';
 import Login from './pages/Login';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home';
+import Main from './layouts/Main';
 
 const router = createBrowserRouter([
 	{
@@ -21,8 +22,14 @@ const router = createBrowserRouter([
 				element: <Login />
 			},
 			{
-				path: "home",
-				element: <Home />
+				path: "*",
+				element: <Main />,
+				children: [
+					{
+						path: "home",
+						element: <Home />
+					}
+				]
 			}
 		]
 	},

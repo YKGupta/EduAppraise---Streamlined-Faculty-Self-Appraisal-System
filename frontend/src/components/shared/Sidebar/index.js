@@ -12,7 +12,7 @@ const Sidebar = () => {
             <section className={styles.icons}>
                 {SidebarData.map((x) => {
                     return (
-                        <Icon icon={x.icon} />
+                        <Icon key={x.name} icon={x.icon} />
                     );
                 })}
             </section>

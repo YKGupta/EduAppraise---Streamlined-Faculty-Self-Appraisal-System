@@ -3,8 +3,8 @@ import Input from '../../components/atoms/Input';
 import styles from './Login.module.scss';
 import UserContext from '../../context/User/Context';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { put } from '../../utils/Local Storage';
+import { toast } from 'react-toastify';
 
 const Login = ({ className }) => {
 
@@ -14,12 +14,16 @@ const Login = ({ className }) => {
     const loginHandler = async (event) => {
         event.preventDefault();
         const success = await login();
-        toast("Trying");
         if(success)
         {
             // Navigate to home page
+            toast.success("Logged In");
             put("authToken", success);
             navigate("/home");
+        }
+        else
+        {
+            toast.error("Error!");
         }
     };
 
