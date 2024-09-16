@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { contains } from '../../utils/Local Storage';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../context/User/Context';
+import Sidebar from '../../components/shared/Sidebar';
 
 const Home = () => {
 
@@ -25,14 +26,14 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
-            {
-                userData ? 
-                    <p>Name = {userData.name}</p>
-                :
-                    <p>Fetching...</p>
-            }
-        </div>
+        userData ? 
+            <section>
+                <Sidebar />
+            </section>
+        :
+            <div>
+                Loading...
+            </div>
     )
 }
 

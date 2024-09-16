@@ -1,0 +1,31 @@
+.container{
+    display: grid;
+    grid-template-rows: 2fr 4fr 2fr;
+    background-color: rgba(53, 7, 33, 0.5);
+    backdrop-filter: blur(10px);
+    width: 5%;
+    height: 100vh;
+    color: white;
+
+    .icons{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        font-size: var(--fs-xxxl);
+        color: inherit;
+    }
+
+    .logo, .logoutBtn{
+        background: transparent;
+        border: none;
+        font-size: var(--fs-xxl);
+        color: inherit;
+    }
+
+    .logoutBtn{
+        svg{
+            rotate: z 180deg;
+        }
+    }
+}
