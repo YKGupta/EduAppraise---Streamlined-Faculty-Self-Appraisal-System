@@ -1,3 +1,17 @@
-@use "./default.scss";
-@use "./reset.scss";
-@use "./theme.scss";
+*{
+    margin: 0px;
+    padding: 0px;
+    font-size: var(--fs-md);
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+input{
+    outline: none;
+}

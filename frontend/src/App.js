@@ -1,9 +1,11 @@
 import React from 'react';
+import Login from './pages/Login';
+import styles from './App.module.scss';
 
 function App() {
 	return (
-		<div>
-			Hemlo
+		<div className={styles.app}>
+			<Login className={styles.login} />
 		</div>
 	);
 }
