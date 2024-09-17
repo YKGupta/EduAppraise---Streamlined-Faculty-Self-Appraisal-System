@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home';
 import Main from './layouts/Main';
 import SearchProvider from './context/Search/Provider';
+import Report from './pages/Report';
 
 const router = createBrowserRouter([
 	{
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
 					{
 						path: "home",
 						element: <Home />
+					},
+					{
+						path: "report",
+						element: <Report />
 					}
 				]
 			}

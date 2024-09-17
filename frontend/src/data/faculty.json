@@ -5,7 +5,8 @@
         "department": "Computer Science",
         "joiningDate": "2015-08-15",
         "status": "Active",
-        "appraisalScore": 85
+        "appraisalScore": 85,
+        "rank": 10
     },
     {
         "name": "Jane Johnson",
@@ -13,7 +14,8 @@
         "department": "Mathematics",
         "joiningDate": "2018-06-21",
         "status": "Active",
-        "appraisalScore": 92
+        "appraisalScore": 92,
+        "rank": 10
     },
     {
         "name": "Alice Williams",
@@ -21,7 +23,8 @@
         "department": "Physics",
         "joiningDate": "2012-11-05",
         "status": "On Leave",
-        "appraisalScore": 78
+        "appraisalScore": 78,
+        "rank": 10
     },
     {
         "name": "Bob Brown",
@@ -29,7 +32,8 @@
         "department": "Chemistry",
         "joiningDate": "2020-03-30",
         "status": "Active",
-        "appraisalScore": 88
+        "appraisalScore": 88,
+        "rank": 10
     },
     {
         "name": "Charlie Jones",
@@ -37,7 +41,8 @@
         "department": "Biology",
         "joiningDate": "2016-01-19",
         "status": "Retired",
-        "appraisalScore": 67
+        "appraisalScore": 67,
+        "rank": 10
     },
     {
         "name": "David Miller",
@@ -45,7 +50,8 @@
         "department": "Engineering",
         "joiningDate": "2011-12-11",
         "status": "Active",
-        "appraisalScore": 90
+        "appraisalScore": 90,
+        "rank": 10
     },
     {
         "name": "Ella Davis",
@@ -53,7 +59,8 @@
         "department": "Economics",
         "joiningDate": "2019-09-23",
         "status": "Active",
-        "appraisalScore": 95
+        "appraisalScore": 95,
+        "rank": 10
     },
     {
         "name": "Frank Garcia",
@@ -61,7 +68,8 @@
         "department": "History",
         "joiningDate": "2013-07-07",
         "status": "On Leave",
-        "appraisalScore": 72
+        "appraisalScore": 72,
+        "rank": 10
     },
     {
         "name": "Grace Rodriguez",
@@ -69,7 +77,8 @@
         "department": "English",
         "joiningDate": "2017-02-28",
         "status": "Active",
-        "appraisalScore": 83
+        "appraisalScore": 83,
+        "rank": 10
     },
     {
         "name": "Henry Wilson",
@@ -77,6 +86,7 @@
         "department": "Philosophy",
         "joiningDate": "2010-05-15",
         "status": "Retired",
-        "appraisalScore": 65
+        "appraisalScore": 65,
+        "rank": 10
     }
 ]

@@ -1,52 +1,60 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './Table.module.scss';
-import data from '../../data/appraisals.json';
 import SearchContext from '../../context/Search/Context';
 
-const Table = () => {
+const Table = ({ tableData }) => {
 
-    const [ curData, setCurData ] = useState(data);
-    const [ isAscending, setIsAscending ] = useState([0, 0, 0, 0]);
+    const [ curData, setCurData ] = useState(tableData);
+    const [ isAscending, setIsAscending ] = useState([]);
     const { searchText } = useContext(SearchContext);
 
     useEffect(() => {
         if(searchText === "")
         {
-            setCurData(prev => data);
+            setCurData(prev => tableData);
             return;
         }
         // Filter the dataset based on the search text
-        setCurData(prev => prev.filter((val) => val.facultyName.toLowerCase().includes(searchText.toLowerCase())));
+        setCurData(prev => {
+            const newData = { ...tableData };
+            newData.data = newData.data.filter((val) => val[prev.keys[0]].toLowerCase().includes(searchText.toLowerCase()));
+            setCurData(newData);
+        });
+        // eslint-disable-next-line
     }, [ searchText ]);
 
     const sort = (i, comparator) => {
+        const newData = {...curData};
         if(isAscending[i] === 1)
-            setCurData(curData.toSorted(comparator));
+            newData.data = newData.data.toSorted(comparator);
         else
-            setCurData(curData.toSorted((a, b) => comparator(b, a)));
+            newData.data = newData.data.toSorted((a, b) => comparator(b, a));
         const temp = [...isAscending];
         temp[i] ^= true;
         setIsAscending(temp);
+        setCurData(newData);
     }
 
     return (
         <table className={styles.table}>
             <thead>
                 <tr>
-                    <th onClick={() => sort(0, (a, b) => a.facultyName.localeCompare(b.facultyName))}>Faculty Name</th>
-                    <th onClick={() => sort(0, (a, b) => a.submissionDate.localeCompare(b.submissionDate))}>Submission Date</th>
-                    <th onClick={() => sort(0, (a, b) => a.status.localeCompare(b.status))}>Status</th>
+                    {
+                        // curData can be null if search based filtering happens since useEffect and useState will in rendered in different order, to avoid having undefined    issues, use the null check
+                        curData && curData.headers.map((x, ind) => <th key={ind} onClick={() => x.sort ? sort(ind, x.comparator) : () => {}}>{x.text}</th>)
+                    }
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {
-                    curData.map((x) => {
+                    curData && curData.data.map((x, ind) => {
                         return (
-                            <tr key={x.lastUpdated}>
-                                <td>{x.facultyName}</td>
-                                <td>{new Date(x.submissionDate).toDateString()}</td>
-                                <td>{x.status}</td>
+                            <tr key={ind}>
+                                { curData.isSelectable && <td></td> }
+                                <td>{x[curData.keys[0]]}</td>
+                                <td>{x[curData.keys[1]]}</td>
+                                <td>{x[curData.keys[2]]}</td>
                                 <td>...</td>
                             </tr>
                         );
