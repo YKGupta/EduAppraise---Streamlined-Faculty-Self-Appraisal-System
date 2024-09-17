@@ -12,11 +12,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home';
 import Main from './layouts/Main';
 import SearchProvider from './context/Search/Provider';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <App />,
+		element: <LandingPage />,
 		children: [
 			{
 				path: "login",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
 					{
 						path: "home",
 						element: <Home />
+					},
+					{
+						path: "facultyManagement",
+						element: <LandingPage />
 					}
 				]
 			}

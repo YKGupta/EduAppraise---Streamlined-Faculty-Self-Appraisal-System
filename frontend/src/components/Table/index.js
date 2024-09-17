@@ -15,7 +15,6 @@ const Table = () => {
             setCurData(prev => data);
             return;
         }
-        // Filter the dataset based on the search text
         setCurData(prev => prev.filter((val) => val.facultyName.toLowerCase().includes(searchText.toLowerCase())));
     }, [ searchText ]);
 
