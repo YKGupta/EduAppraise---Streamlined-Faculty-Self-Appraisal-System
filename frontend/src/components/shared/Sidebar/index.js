@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Sidebar.module.scss';
 import SidebarData from '../../../data/sidebar.json';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 const Sidebar = () => {
+
+    const [ expanded, setExpanded ] = useState(false);
+
     return (
-        <section className={styles.container}>
+        <section className={styles.container} onMouseEnter={() => setExpanded(true)} onMouseLeave={() => setExpanded(false)}>
             <button className={styles.logo}>
                 <Icon icon="mdi:smiley" />
             </button>
             <section className={styles.icons}>
                 {SidebarData.map((x) => {
                     return (
-                        <Icon key={x.name} icon={x.icon} />
+                        <i key={x.name}>
+                            <Icon icon={x.icon} />
+                            <p>{x.name}</p>
+                        </i>
                     );
                 })}
             </section>
             <button className={styles.logoutBtn}>
                 <Icon icon="material-symbols:logout" />
+                {
+                    expanded && 
+                    <p>Logout</p>
+                }
             </button>
         </section>
     )
