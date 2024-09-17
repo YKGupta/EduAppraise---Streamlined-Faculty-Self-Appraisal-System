@@ -63,9 +63,13 @@ const Table = ({ tableData }) => {
                         return (
                             <tr key={ind}>
                                 { curData.isSelectable && <td className={`${styles.selector} ${selectedData.includes(x) && styles.selected}`} onClick={() => select(x)}><span></span></td> }
-                                <td className={`${selectedData.includes(x) && styles.selected}`}>{curData.specialFunctions[0](x[curData.keys[0]])}</td>
-                                <td className={`${selectedData.includes(x) && styles.selected}`}>{curData.specialFunctions[1](x[curData.keys[1]])}</td>
-                                <td className={`${selectedData.includes(x) && styles.selected}`}>{curData.specialFunctions[2](x[curData.keys[2]])}</td>
+                                {
+                                    curData.keys.map((val, ind) => {
+                                        return (
+                                            <td key={ind} className={`${selectedData.includes(x) && styles.selected}`}>{curData.specialFunctions[ind](x[curData.keys[ind]])}</td>
+                                        );
+                                    })
+                                }
                             </tr>
                         );
                     })
