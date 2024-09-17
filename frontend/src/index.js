@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Main from './layouts/Main';
 import SearchProvider from './context/Search/Provider';
 import Report from './pages/Report';
+import DownloadProvider from './context/Download/Provider';
 
 const router = createBrowserRouter([
 	{
@@ -46,7 +47,9 @@ root.render(
 	<React.StrictMode>
 		<UserProvider>
 				<SearchProvider>
-					<RouterProvider router={router} />
+					<DownloadProvider>
+						<RouterProvider router={router} />
+					</DownloadProvider>
 				</SearchProvider>
 		</UserProvider>
 	</React.StrictMode>

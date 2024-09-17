@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './Table.module.scss';
 import SearchContext from '../../context/Search/Context';
+import DownloadContext from '../../context/Download/Context';
 
 const Table = ({ tableData }) => {
 
     const [ curData, setCurData ] = useState(tableData);
     const [ isAscending, setIsAscending ] = useState([]);
     const { searchText } = useContext(SearchContext);
+    const { selectedData, setSelectedData } = useContext(DownloadContext);
 
     useEffect(() => {
         if(searchText === "")
@@ -35,6 +37,15 @@ const Table = ({ tableData }) => {
         setCurData(newData);
     }
 
+    const select = (event, element) => {
+        let newData = [ ...selectedData ];
+        if(newData.includes(element))
+            newData = newData.filter((val) => val !== element);
+        else
+            newData.push(element);
+        setSelectedData(newData);
+    };
+
     return (
         <table className={styles.table}>
             <thead>
@@ -51,11 +62,11 @@ const Table = ({ tableData }) => {
                     curData && curData.data.map((x, ind) => {
                         return (
                             <tr key={ind}>
-                                { curData.isSelectable && <td></td> }
-                                <td>{x[curData.keys[0]]}</td>
-                                <td>{x[curData.keys[1]]}</td>
-                                <td>{x[curData.keys[2]]}</td>
-                                <td>...</td>
+                                { curData.isSelectable && <td className={`${styles.selector} ${selectedData.includes(x) && styles.selected}`} onClick={(event) => select(event, x)}><span></span></td> }
+                                <td className={`${selectedData.includes(x) && styles.selected}`}>{x[curData.keys[0]]}</td>
+                                <td className={`${selectedData.includes(x) && styles.selected}`}>{x[curData.keys[1]]}</td>
+                                <td className={`${selectedData.includes(x) && styles.selected}`}>{x[curData.keys[2]]}</td>
+                                <td className={`${selectedData.includes(x) && styles.selected}`}>...</td>
                             </tr>
                         );
                     })

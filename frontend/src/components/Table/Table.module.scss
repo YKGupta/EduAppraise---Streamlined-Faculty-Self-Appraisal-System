@@ -15,4 +15,24 @@
         border-collapse: collapse;
         text-align: center;
     }
+
+    td.selected{
+        background-color: rgba(7, 44, 43, 0.4);
+    }
+
+    td.selected.selector{
+        span{
+            background-color: rgba(7, 44, 43, 1);
+        }
+    }
+
+    td.selector{
+        span{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            border: 1px solid rgba(7, 44, 43, 0.4);
+        }
+    }
 }

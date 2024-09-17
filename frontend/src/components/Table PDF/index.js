@@ -1,23 +1,23 @@
-import { Document, Font, Page, Text, View } from '@react-pdf/renderer';
+import { Document, Font, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 import React from 'react';
 
 const styles = StyleSheet.create({
     page: {
-        padding: "20px",
-        fontFamily: "Ubuntu"
+        padding: "15px",
+        paddingLeft: "45px",
+        fontFamily: "Ubuntu",
+        fontSize: "14px"
     },
-    note: {
+    row: {
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between"
+        flexDirection: "row",   
+        alignItems: "center",
+        justifyContent: "flex-start"
     },
-    text: {
-        fontSize: "16px"
-    },
-    footer: {
-        fontSize: "12px",
-        marginTop: "10px",
-        color: "#808080"
+    col: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     }
 });
 
@@ -39,20 +39,49 @@ Font.register({
     ],
 });
 
-const TablePDF = ({ data }) => {
+const TablePDF = ({ data, keys }) => {
+    // Let's split the array into chunks so that we can divide the PDF into pages
+
+    data = split(data);
+    const numberOfColumns = keys.length;
+
     return (
         <Document>
-            <Page size="A4" style={styles.page}>
-                { data.map((val, ind) => {
-                    return <View key={ind}>
-                        { val.map((val, ind) => {
-                            return <Text key={ind}>{val}</Text>
-                        }) }
-                    </View>
-                }) }
-            </Page>
+            {
+                data.map((page, ind0) => {
+                    return (
+                        <Page size="A4" style={styles.page} key={ind0}>
+                            { 
+                                page.map((val, ind1) => {
+                                    return (
+                                        <View key={ind1} style={styles.row}>
+                                            {
+                                                keys.map((key, ind2) => {
+                                                    return <Text key={ind2} style={{...styles.col, width: `calc(100% / ${numberOfColumns})` }}>{val[key]}</Text>
+                                                })
+                                            }
+                                        </View>
+                                    );
+                                })
+                            }
+                        </Page>
+                    );
+                })
+            }
         </Document>
     );
 }
+
+const split = (arr, chunkSize = 100) => {
+    const ans = [];
+    const n = arr.length;
+    for(let i = 0; i < n; i += chunkSize)
+    {
+        const start = i;
+        const end = Math.min(i + chunkSize, n);
+        ans.push(arr.slice(start, end));
+    }
+    return ans;
+};
 
 export default TablePDF;

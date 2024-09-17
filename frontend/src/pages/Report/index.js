@@ -10,11 +10,13 @@ import styles from './Report.module.scss';
 import Button from '../../components/atoms/Button';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import TablePDF from '../../components/Table PDF';
+import DownloadContext from '../../context/Download/Context';
 
 const Report = () => {
 
     const { user, userDetails } = useContext(UserContext);
     const { searchText, setSearchText } = useContext(SearchContext);
+    const { selectedData } = useContext(DownloadContext);
 
     useEffect(() => {
         userDetails();
@@ -84,14 +86,16 @@ const Report = () => {
                 <Table tableData={tableData} />
             </div>
             <div className={styles.btns}>
-                <Button propStyles={{ backgroundColor: "#90E8E9", color: "#0C4443", width: "200px"}} text="Download Selected"/>
-                <article>
-                    <PDFDownloadLink document={<TablePDF data={[[1, 2, 3, 4], [5, 6 ,7, 8]]} />} fileName="a.pdf">
-                        {({ blob, url, loading, error }) =>
-                            loading ? 'Loading document...' : 'Download now!'
-                        }
-                    </PDFDownloadLink>
-                </article>
+                <PDFDownloadLink document={<TablePDF data={selectedData} keys={["facultyName", "submissionDate", "status"]} />} fileName="a.pdf">
+                    {({ blob, url, loading, error }) =>
+                        <Button propStyles={{ backgroundColor: "#90E8E9", color: "#0C4443", width: "200px"}} text={loading ? "Loading Document..." : "Download Selected"}/>
+                    }
+                </PDFDownloadLink>
+                <PDFDownloadLink document={<TablePDF data={tableData.data} keys={["facultyName", "submissionDate", "status"]} />} fileName="a.pdf">
+                    {({ blob, url, loading, error }) =>
+                        <Button propStyles={{ backgroundColor: "#90E8E9", color: "#0C4443", width: "200px"}} text={loading ? "Loading Document..." : "Download All"}/>
+                    }
+                </PDFDownloadLink>
             </div>
         </>
     )
