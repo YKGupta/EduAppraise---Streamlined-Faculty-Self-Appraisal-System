@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import styles from './Sidebar.module.scss';
 import SidebarData from '../../../data/sidebar.json';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
 
     const [ expanded, setExpanded ] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <section className={styles.container} onMouseEnter={() => setExpanded(true)} onMouseLeave={() => setExpanded(false)}>
@@ -15,7 +17,7 @@ const Sidebar = () => {
             <section className={styles.icons}>
                 {SidebarData.map((x) => {
                     return (
-                        <i key={x.name}>
+                        <i key={x.name} onClick={() => navigate(x.path)}>
                             <Icon icon={x.icon} />
                             <p>{x.name}</p>
                         </i>

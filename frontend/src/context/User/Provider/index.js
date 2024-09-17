@@ -7,6 +7,7 @@ const UserProvider = ({ children }) => {
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [ user, setUser ] = useState({});
 
     const login = async () => {
         // TODO: Replace with API Call
@@ -35,18 +36,17 @@ const UserProvider = ({ children }) => {
 
     const userDetails = () => {
         const temp = get("authToken");
-        for(let user of UserData)
+        for(let x of UserData)
         {
-            if(user.email === temp)
+            if(x.email === temp)
             {
-                return user;
+                setUser(x);
             }
         }
-        return {};
     };
 
     return (
-        <UserContext.Provider value={{ email, setEmail, password, setPassword, login, userDetails }}>
+        <UserContext.Provider value={{ email, setEmail, password, setPassword, login, userDetails, user, setUser }}>
             { children }
         </UserContext.Provider>
     )

@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './Table.module.scss';
 import data from '../../data/appraisals.json';
+import SearchContext from '../../context/Search/Context';
 
 const Table = () => {
 
     const [ curData, setCurData ] = useState(data);
     const [ isAscending, setIsAscending ] = useState([0, 0, 0, 0]);
+    const { searchText } = useContext(SearchContext);
 
+    useEffect(() => {
+        if(searchText === "")
+        {
+            setCurData(prev => data);
+            return;
+        }
+        // Filter the dataset based on the search text
+        setCurData(prev => prev.filter((val) => val.facultyName.toLowerCase().includes(searchText.toLowerCase())));
+    }, [ searchText ]);
 
     const sort = (i, comparator) => {
         if(isAscending[i] === 1)

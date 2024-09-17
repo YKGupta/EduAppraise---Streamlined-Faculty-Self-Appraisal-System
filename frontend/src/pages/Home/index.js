@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './Home.module.scss';
 import { contains } from '../../utils/Local Storage';
 import { useNavigate } from 'react-router-dom';
@@ -7,13 +7,15 @@ import SearchBar from '../../components/Search Bar';
 import Card from '../../components/Card';
 import Table from '../../components/Table';
 import data from '../../data/appraisals.json';
+import Welcome from '../../components/shared/Welcome';
+import Chart from '../../components/Rank Chart';
+import SearchContext from '../../context/Search/Context';
 
 const Home = () => {
 
     const navigate = useNavigate();
-    const [ userData, setUserData ] = useState({});
-    const [ searchText, setSearchText ] = useState("");
-    const { userDetails } = useContext(UserContext);
+    const { searchText, setSearchText } = useContext(SearchContext);
+    const { userDetails, user } = useContext(UserContext);
 
     useEffect(() => {
         if(!contains("authToken"))
@@ -22,10 +24,7 @@ const Home = () => {
             return;
         }
 
-        const func = async () => {
-            setUserData(await userDetails());
-        }
-        func();
+        userDetails();
 
         // eslint-disable-next-line
     }, []);
@@ -50,16 +49,31 @@ const Home = () => {
     return (
         <>
             <SearchBar state={searchText} setState={setSearchText} />
+            <Welcome />
             {
-                userData ? 
+                user ? 
                     <section>
                         <section className={styles.topBarCards}>
-                                <Card title='Pending' count={count().pending} />
-                                <Card title='Approved' count={count().approved} />
-                                <Card title='Rejected' count={count().rejected} />
+                            {
+                                user.isAdmin ? 
+                                <>
+                                    <Card title='Pending' text={count().pending} />
+                                    <Card title='Approved' text={count().approved} />
+                                    <Card title='Rejected' text={count().rejected} />
+                                </>
+                                :
+                                <>
+                                    <Card title='Rank' text={user.rank} />
+                                    <Card title='Score' text={user.score} />
+                                    <Card title='Pending Appraisals' text={user.pendingAppraisals} />
+                                </>
+                            }
                         </section>
                         <section className={styles.tableContainer}>
                             <Table />
+                        </section>
+                        <section>
+                            <Chart />
                         </section>
                     </section>
                 :

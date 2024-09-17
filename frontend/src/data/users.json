@@ -2,56 +2,100 @@
     {
         "name": "ZRMoopIg",
         "email": "oveqmh@mail.com",
-        "password": "JOrkxeHMuv"
+        "password": "JOrkxeHMuv",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "coTIRYOZ",
         "email": "scnjym@example.com",
-        "password": "EPdXywzlAj"
+        "password": "EPdXywzlAj",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "bUNmYhGS",
         "email": "dsrosx@mail.com",
-        "password": "xggWldlEvb"
+        "password": "xggWldlEvb",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "atWqQmgD",
         "email": "valoxp@test.com",
-        "password": "ZTZKymQVkP"
+        "password": "ZTZKymQVkP",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "xzrCrNst",
         "email": "owsanb@example.com",
-        "password": "PlBWCriHUF"
+        "password": "PlBWCriHUF",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "PEEiPiDV",
         "email": "bkzlat@example.com",
-        "password": "efndrDeyYN"
+        "password": "efndrDeyYN",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "ZqnvZTgw",
         "email": "bzgdjr@mail.com",
-        "password": "lbnOhTooXu"
+        "password": "lbnOhTooXu",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "aFLpYdST",
         "email": "qhhckp@test.com",
-        "password": "tXPbLlSQfv"
+        "password": "tXPbLlSQfv",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "edpEGAkk",
         "email": "apgtma@test.com",
-        "password": "tcHGifXoMV"
+        "password": "tcHGifXoMV",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     },
     {
         "name": "fSDEjVlu",
         "email": "okqtjs@test.com",
-        "password": "wURYAMLqYU"
+        "password": "wURYAMLqYU",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     }, 
     {
         "name": "User A",
         "email": "userA@test.com",
-        "password": "userA"
+        "password": "userA",
+        "rank": 1,
+        "score": 128,
+        "pendingAppraisals": 10,
+        "isAdmin": false
     } 
 ]
