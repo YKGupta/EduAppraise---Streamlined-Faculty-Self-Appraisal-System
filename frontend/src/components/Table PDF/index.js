@@ -1,4 +1,5 @@
 import { Document, Font, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
+import UbuntuBold from '../../assets/Fonts/Ubuntu-Bold.ttf';
 import React from 'react';
 
 const styles = StyleSheet.create({
@@ -12,12 +13,16 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",   
         alignItems: "center",
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
+        marginBottom: "20px"
     },
     col: {
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
+    },
+    headings: {
+        fontFamily: "Ubuntu-Bold",
     }
 });
 
@@ -29,7 +34,7 @@ Font.register({
         },
         {
             src: 'https://fonts.gstatic.com/s/questrial/v13/QdVUSTchPBm7nuUeVf7EuStkm20oJA.ttf',
-            fontWeight: 'bold',
+            fontWeight: 800,
         },
         {
             src: 'https://fonts.gstatic.com/s/questrial/v13/QdVUSTchPBm7nuUeVf7EuStkm20oJA.ttf',
@@ -39,7 +44,13 @@ Font.register({
     ],
 });
 
-const TablePDF = ({ data, keys }) => {
+Font.register({
+    family: 'Ubuntu-Bold',
+    src: UbuntuBold,
+    fontWeight: 700
+});
+
+const TablePDF = ({ data, keys, headings, specialFunctions }) => {
     // Let's split the array into chunks so that we can divide the PDF into pages
 
     data = split(data);
@@ -52,17 +63,28 @@ const TablePDF = ({ data, keys }) => {
                     return (
                         <Page size="A4" style={styles.page} key={ind0}>
                             { 
-                                page.map((val, ind1) => {
-                                    return (
-                                        <View key={ind1} style={styles.row}>
-                                            {
-                                                keys.map((key, ind2) => {
-                                                    return <Text key={ind2} style={{...styles.col, width: `calc(100% / ${numberOfColumns})` }}>{val[key]}</Text>
-                                                })
-                                            }
-                                        </View>
-                                    );
-                                })
+                                <>
+                                    <View key={ind0 + "_1"} style={styles.row}>
+                                        {
+                                            headings.map((key, ind2) => {
+                                                return <Text key={ind2} style={{...styles.col, ...styles.headings, width: `calc(100% / ${numberOfColumns})` }}>{key}</Text>
+                                            })
+                                        }
+                                    </View>
+                                    {
+                                        page.map((val, ind1) => {
+                                            return (
+                                                <View key={ind1} style={styles.row}>
+                                                    {
+                                                        keys.map((key, ind2) => {
+                                                            return <Text key={ind2} style={{...styles.col, width: `calc(100% / ${numberOfColumns})` }}>{specialFunctions[ind2](val[key])}</Text>
+                                                        })
+                                                    }
+                                                </View>
+                                            );
+                                        })
+                                    }
+                                </>
                             }
                         </Page>
                     );

@@ -11,12 +11,19 @@ import Button from '../../components/atoms/Button';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import TablePDF from '../../components/Table PDF';
 import DownloadContext from '../../context/Download/Context';
+import { dummy, toDateString } from '../../utils/Converters';
 
 const Report = () => {
 
     const { user, userDetails } = useContext(UserContext);
     const { searchText, setSearchText } = useContext(SearchContext);
     const { selectedData } = useContext(DownloadContext);
+    const adminHeadings = ["Faculty Name", "Rank", "Score"];
+    const adminKeys = ["name", "rank", "appraisalScore"];
+    const nonAdminHeadings = ["Faculty Name", "Submission Date", "Status"];
+    const nonAdminKeys = ["facultyName", "submissionDate", "status"];
+    const adminSpecialFunctions = [ dummy, dummy, dummy ];
+    const nonAdminSpecialFunctions = [ dummy, toDateString, dummy ];
 
     useEffect(() => {
         userDetails();
@@ -27,7 +34,7 @@ const Report = () => {
         headers: [
             {
                 text: "⁂",
-                sort: false,
+                sort: false
             },
             {
                 text: "Name",
@@ -61,7 +68,8 @@ const Report = () => {
             }
         ],
         data: user.isAdmin ? facultyData : appraisalData,
-        keys: user.isAdmin ? ["name", "rank", "appraisalScore"] : ["facultyName", "submissionDate", "status"],
+        keys: user.isAdmin ? adminKeys : nonAdminKeys,
+        specialFunctions: user.isAdmin ? [ dummy, dummy, dummy ] : [ dummy, toDateString, dummy ],
         isSelectable: true
     };
 
@@ -86,12 +94,12 @@ const Report = () => {
                 <Table tableData={tableData} />
             </div>
             <div className={styles.btns}>
-                <PDFDownloadLink document={<TablePDF data={selectedData} keys={["facultyName", "submissionDate", "status"]} />} fileName="a.pdf">
+                <PDFDownloadLink document={<TablePDF data={selectedData} keys={user.isAdmin ? adminKeys : nonAdminKeys} headings={user.isAdmin ? adminHeadings : nonAdminHeadings} specialFunctions={user.isAdmin ? adminSpecialFunctions : nonAdminSpecialFunctions} />} fileName="a.pdf">
                     {({ blob, url, loading, error }) =>
                         <Button propStyles={{ backgroundColor: "#90E8E9", color: "#0C4443", width: "200px"}} text={loading ? "Loading Document..." : "Download Selected"}/>
                     }
                 </PDFDownloadLink>
-                <PDFDownloadLink document={<TablePDF data={tableData.data} keys={["facultyName", "submissionDate", "status"]} />} fileName="a.pdf">
+                <PDFDownloadLink document={<TablePDF data={tableData.data} keys={user.isAdmin ? adminKeys : nonAdminKeys} headings={user.isAdmin ? adminHeadings : nonAdminHeadings} specialFunctions={user.isAdmin ? adminSpecialFunctions : nonAdminSpecialFunctions} />} fileName="a.pdf">
                     {({ blob, url, loading, error }) =>
                         <Button propStyles={{ backgroundColor: "#90E8E9", color: "#0C4443", width: "200px"}} text={loading ? "Loading Document..." : "Download All"}/>
                     }

@@ -19,6 +19,7 @@ const Table = ({ tableData }) => {
         // Filter the dataset based on the search text
         setCurData(prev => {
             const newData = { ...tableData };
+            console.log(prev);
             newData.data = newData.data.filter((val) => val[prev.keys[0]].toLowerCase().includes(searchText.toLowerCase()));
             setCurData(newData);
         });
@@ -37,7 +38,7 @@ const Table = ({ tableData }) => {
         setCurData(newData);
     }
 
-    const select = (event, element) => {
+    const select = (element) => {
         let newData = [ ...selectedData ];
         if(newData.includes(element))
             newData = newData.filter((val) => val !== element);
@@ -54,7 +55,6 @@ const Table = ({ tableData }) => {
                         // curData can be null if search based filtering happens since useEffect and useState will in rendered in different order, to avoid having undefined    issues, use the null check
                         curData && curData.headers.map((x, ind) => <th key={ind} onClick={() => x.sort ? sort(ind, x.comparator) : () => {}}>{x.text}</th>)
                     }
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,11 +62,10 @@ const Table = ({ tableData }) => {
                     curData && curData.data.map((x, ind) => {
                         return (
                             <tr key={ind}>
-                                { curData.isSelectable && <td className={`${styles.selector} ${selectedData.includes(x) && styles.selected}`} onClick={(event) => select(event, x)}><span></span></td> }
-                                <td className={`${selectedData.includes(x) && styles.selected}`}>{x[curData.keys[0]]}</td>
-                                <td className={`${selectedData.includes(x) && styles.selected}`}>{x[curData.keys[1]]}</td>
-                                <td className={`${selectedData.includes(x) && styles.selected}`}>{x[curData.keys[2]]}</td>
-                                <td className={`${selectedData.includes(x) && styles.selected}`}>...</td>
+                                { curData.isSelectable && <td className={`${styles.selector} ${selectedData.includes(x) && styles.selected}`} onClick={() => select(x)}><span></span></td> }
+                                <td className={`${selectedData.includes(x) && styles.selected}`}>{curData.specialFunctions[0](x[curData.keys[0]])}</td>
+                                <td className={`${selectedData.includes(x) && styles.selected}`}>{curData.specialFunctions[1](x[curData.keys[1]])}</td>
+                                <td className={`${selectedData.includes(x) && styles.selected}`}>{curData.specialFunctions[2](x[curData.keys[2]])}</td>
                             </tr>
                         );
                     })

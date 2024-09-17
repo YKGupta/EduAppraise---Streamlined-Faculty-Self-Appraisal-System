@@ -96,6 +96,6 @@
         "rank": 1,
         "score": 128,
         "pendingAppraisals": 10,
-        "isAdmin": false
+        "isAdmin": true
     } 
 ]
