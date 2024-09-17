@@ -15,6 +15,7 @@ import SearchProvider from './context/Search/Provider';
 import Report from './pages/Report';
 import DownloadProvider from './context/Download/Provider';
 import Faculty from './pages/Faculty';
+import Appraisal from './pages/Appraisal';
 
 const router = createBrowserRouter([
 	{
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
 					{
 						path: "home",
 						element: <Home />
+					},
+					{
+						path: "appraisalManagement",
+						element: <Appraisal />
 					},
 					{
 						path: "facultyManagement",
