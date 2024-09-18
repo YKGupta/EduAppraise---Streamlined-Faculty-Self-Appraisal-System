@@ -16,6 +16,7 @@ import Report from './pages/Report';
 import DownloadProvider from './context/Download/Provider';
 import Faculty from './pages/Faculty';
 import Appraisal from './pages/Appraisal';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 const router = createBrowserRouter([
 	{
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "",
-				element: <p>Landing Page</p>	
+				element: <LandingPage />	
 			},
 			{
 				path: "login",
