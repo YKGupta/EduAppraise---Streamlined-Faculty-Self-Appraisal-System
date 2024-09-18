@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 .cardContainer{
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 10px 20px;
-    background-color: rgba(27, 105, 105, 0.075);
+    margin-left: 10px;
+    // background-color: rgba(27, 105, 105, 0.075);
     border-radius: var(--br-sm);
-    border: 1px dashed #1B6969;
-
+    // border: 1px solid #1B6969;
+    background: linear-gradient(180deg, #f0f4f8 0%, #d4f8e8 100%);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: "Roboto Condensed", sans-serif;
     .progressContainer{
         display: flex;
         align-items: center;
