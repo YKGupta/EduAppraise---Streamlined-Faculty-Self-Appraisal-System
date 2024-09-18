@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import SearchBar from '../../components/Search Bar';
 import Welcome from '../../components/shared/Welcome';
 import UserContext from '../../context/User/Context';
+import facultyData from '../../data/faculty.json';
+import appraisalData from '../../data/appraisals.json';
 import Table from '../../components/Table';
 import SearchContext from '../../context/Search/Context';
 import styles from './Report.module.scss';
@@ -10,24 +12,21 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import TablePDF from '../../components/Table PDF';
 import DownloadContext from '../../context/Download/Context';
 import { dummy, toDateString } from '../../utils/Converters';
-import AppraisalsContext from '../../context/Appraisals/Context';
 
 const Report = () => {
 
     const { user, userDetails } = useContext(UserContext);
     const { searchText, setSearchText } = useContext(SearchContext);
     const { selectedData } = useContext(DownloadContext);
-    const { appraisals, getAll } = useContext(AppraisalsContext);
     const adminHeadings = ["Faculty Name", "Rank", "Score"];
     const adminKeys = ["name", "rank", "appraisalScore"];
     const nonAdminHeadings = ["Faculty Name", "Submission Date", "Status"];
-    const nonAdminKeys = ["name", "createdAt", "status"];
+    const nonAdminKeys = ["facultyName", "submissionDate", "status"];
     const adminSpecialFunctions = [ dummy, dummy, dummy ];
     const nonAdminSpecialFunctions = [ dummy, toDateString, dummy ];
 
     useEffect(() => {
         userDetails();
-        getAll();
         // eslint-disable-next-line
     }, []);
 
@@ -55,7 +54,7 @@ const Report = () => {
             {
                 text: "Submission Date",
                 sort: true,
-                comparator: (a, b) => a.createdAt.localeCompare(b.createdAt)
+                comparator: (a, b) => a.submissionDate.localeCompare(b.submissionDate)
             },
             {
                 text: "Score",
@@ -68,9 +67,9 @@ const Report = () => {
                 comparator: (a, b) => a.status.localeCompare(b.status)
             }
         ],
-        data: appraisals,
-        keys: nonAdminKeys,
-        specialFunctions: [ dummy, toDateString, dummy ],
+        data: user.isAdmin ? facultyData : appraisalData,
+        keys: user.isAdmin ? adminKeys : nonAdminKeys,
+        specialFunctions: user.isAdmin ? [ dummy, dummy, dummy ] : [ dummy, toDateString, dummy ],
         isSelectable: true
     };
 

@@ -9,14 +9,12 @@ import data from '../../data/appraisals.json';
 import Welcome from '../../components/shared/Welcome';
 import Chart from '../../components/Rank Chart';
 import SearchContext from '../../context/Search/Context';
-import AppraisalsContext from '../../context/Appraisals/Context';
 
 const Home = () => {
 
     const navigate = useNavigate();
     const { searchText, setSearchText } = useContext(SearchContext);
     const { userDetails, user } = useContext(UserContext);
-    const { getAll } = useContext(AppraisalsContext);
 
     useEffect(() => {
         if(!contains("authToken"))
@@ -26,7 +24,6 @@ const Home = () => {
         }
 
         userDetails();
-        getAll();
 
         // eslint-disable-next-line
     }, []);

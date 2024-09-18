@@ -1,7 +1,7 @@
 import React from 'react';
-import './LandingPage.scss'; // Import your CSS for layout and design
-import Slider from "react-slick"; // Import the slider
-import "slick-carousel/slick/slick.css"; // Import slick-carousel styles
+import './LandingPage.scss'; 
+import Slider from "react-slick"; 
+import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import body_image from './assets/landing_body.png';
 import imgslider1 from './assets/imgslider2.png';
@@ -16,29 +16,34 @@ const LandingPage = () => {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		autoplay: true,
-		autoplaySpeed: 5000, // Change image every 5 seconds
+		autoplaySpeed: 5000, 
 	};
 
 	return (
 		<div className="landing-container">
-			{/* Header Section */}
+
 			<header>
-				<div className="logo"><img src={logo} alt="logo" />EduAppraise</div>
+			<div className="logo">
+      <img src={logo} alt="logo" />
+      <div className="title">
+        <span>EduAppraise</span>
+        <h6 className="tagline">Simplifying faculty appraisals, advancing careers</h6>
+      </div>
+    </div>
+				
 				<nav>
 					<ul>
-						<li><button class="log">Login</button></li>
-						<li><button class="reg">Sign up</button></li>
+						<li><a href='https://sih-authn-2.onrender.com'><button class="log">Login</button></a></li>
+						<li><a href='https://sih-authn-2.onrender.com/signup'><button class="reg">Sign up</button></a></li>
 					</ul>
 				</nav>
 			</header>
-
-			{/* Content Section */}
 			<div className='gradient-body'>
 				<div className="content">
 					<div className="text-section">
 						<h1>Automated System for Faculty Career Advancements</h1>
 						<p>EduAppraise revolutionizes faculty career advancements with a streamlined, automated system for self-appraisal and administrative evaluation. Our platform enables faculty to easily update their activities in real time, ensuring timely, transparent evaluations. Designed for simplicity and efficiency, EduAppraise gives administrators instant access to the latest information, facilitating faster decision-making and fostering continuous growth.</p>
-						<button>Get Started</button>
+						<a href='https://sih-authn-2.onrender.com/signup'><button>Get Started</button></a>
 					</div>
 
 					<div className="image-section">
@@ -47,8 +52,6 @@ const LandingPage = () => {
 						</div>
 					</div>
 				</div>
-
-				{/* Slider Section */}
 				<div className="slider-container">
 					<Slider {...sliderSettings}>
 						<div className="slide">
@@ -86,8 +89,6 @@ const LandingPage = () => {
 						</div>
 					</Slider>
 				</div>
-
-				{/* Quote Cards Section */}
 				<div className="quote-cards">
 					<div className="quote-card">
 						<p>"This platform revolutionized our faculty appraisals! The real-time features save so much time and effort."</p>
@@ -103,8 +104,6 @@ const LandingPage = () => {
 					</div>
 				</div>
 			</div>
-
-			{/* Footer Section */}
 			<footer>
 				<div className="footer-content">
 					<p>&copy; 2024 EduAppraise. All Rights Reserved.</p>

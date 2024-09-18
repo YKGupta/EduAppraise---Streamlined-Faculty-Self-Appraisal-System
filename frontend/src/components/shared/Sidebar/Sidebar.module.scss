@@ -2,7 +2,7 @@
     position: fixed;
     display: grid;
     grid-template-rows: 2fr 4fr 2fr;
-    background-color: rgba(7, 44, 43);
+    background: linear-gradient(to bottom, #38a3a5, #57cc99); 
     width: 5%;
     height: 100vh;
     color: white;
@@ -37,7 +37,6 @@
     }
 
     .logo, .logoutBtn{
-        width: 100%;
         background: transparent;
         border: none;
         font-size: var(--fs-xxl);
@@ -50,10 +49,6 @@
             font-size: var(--fs-small);
             align-self: center;
             margin-left: 10px;
-        }
-
-        img{
-            width: 100%;
         }
     }
 

@@ -13,7 +13,7 @@ const RankChart = () => {
         datasets: [{
             label: "Rank",
             data: data.map((x) => x.rank),
-            borderColor: '#0C4443',
+            borderColor: '#000',
             borderWidth: 1.5,
             pointBorderWidth: 1,
             tension: 0,

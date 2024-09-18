@@ -1,40 +1,32 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import SearchContext from '../../context/Search/Context';
+import appraisalData from '../../data/appraisals.json';
 import { dummy, toDateString } from '../../utils/Converters';
 import SearchBar from '../../components/Search Bar';
 import Welcome from '../../components/shared/Welcome';
 import Table from '../../components/Table';
 import styles from './Appraisal.module.scss';
 import UserContext from '../../context/User/Context';
-import AppraisalModal from '../../components/Appraisal Modal';
-import AppraisalsContext from '../../context/Appraisals/Context';
 
 const Appraisal = () => {
 
     const { searchText, setSearchText } = useContext(SearchContext);
-    const { user } = useContext(UserContext);
-    const { getAll, appraisals, getUserAppraisals } = useContext(AppraisalsContext);
+    const { user, getUserAppraisals } = useContext(UserContext);
 
-    const adminKeys = ["name", "createdAt", "status"];
-    const nonAdminKeys = ["createdAt", "status", "updatedAt"];
-
-    useEffect(() => {
-        getAll();
-
-        // eslint-disable-next-line
-    }, []);
+    const adminKeys = ["facultyName", "submissionDate", "status"];
+    const nonAdminKeys = ["submissionDate", "status", "lastUpdated"];
 
     const tableData = {
         headers: [
             {
                 text: "Faculty Name",
                 sort: true,
-                comparator: (a, b) => a.name.localeCompare(b.name)
+                comparator: (a, b) => a.facultyName.localeCompare(b.facultyName)
             },
             {
                 text: "Submission Date",
                 sort: true,
-                comparator: (a, b) => a.createdAt.localeCompare(b.createdAt)
+                comparator: (a, b) => a.submissionDate.localeCompare(b.submissionDate)
             },
             {
                 text: "Status",
@@ -44,10 +36,10 @@ const Appraisal = () => {
             {
                 text: "Last Updated",
                 sort: true,
-                comparator: (a, b) => a.updatedAt.localeCompare(b.updatedAt)
+                comparator: (a, b) => a.lastUpdated.localeCompare(b.lastUpdated)
             }
         ],
-        data: user.isAdmin ? appraisals : getUserAppraisals(user.name),
+        data: user.isAdmin ? appraisalData : getUserAppraisals(user.name),
         keys: user.isAdmin ? adminKeys : nonAdminKeys,
         specialFunctions: user.isAdmin ? [ dummy, toDateString, dummy ] : [ toDateString, dummy, toDateString ],
         isSelectable: false
@@ -62,7 +54,6 @@ const Appraisal = () => {
         <section>
             <SearchBar state={searchText} setState={setSearchText} />
             <Welcome />
-            {/* <AppraisalModal /> */}
             <div className={styles.tableContainer}>
                 <Table tableData={tableData} />
             </div>
