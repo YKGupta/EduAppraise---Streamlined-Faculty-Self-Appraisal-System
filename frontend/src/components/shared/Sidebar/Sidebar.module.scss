@@ -37,6 +37,7 @@
     }
 
     .logo, .logoutBtn{
+        width: 100%;
         background: transparent;
         border: none;
         font-size: var(--fs-xxl);
@@ -49,6 +50,10 @@
             font-size: var(--fs-small);
             align-self: center;
             margin-left: 10px;
+        }
+
+        img{
+            width: 100%;
         }
     }
 

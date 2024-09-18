@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from './Table.module.scss';
 import SearchContext from '../../context/Search/Context';
 import DownloadContext from '../../context/Download/Context';
+import AppraisalModalContext from '../../context/Appraisal Modal/Context';
 
 const Table = ({ tableData }) => {
 
@@ -9,6 +10,7 @@ const Table = ({ tableData }) => {
     const [ isAscending, setIsAscending ] = useState([]);
     const { searchText } = useContext(SearchContext);
     const { selectedData, setSelectedData } = useContext(DownloadContext);
+    const { setModalData } = useContext(AppraisalModalContext);
 
     useEffect(() => {
         if(searchText === "")

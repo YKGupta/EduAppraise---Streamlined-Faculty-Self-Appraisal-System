@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import UserContext from '../Context';
 import UserData from '../../../data/users.json';
-import AppraisalData from '../../../data/appraisals.json';
 import { get } from '../../../utils/Local Storage';
 
 const UserProvider = ({ children }) => {
@@ -46,12 +45,8 @@ const UserProvider = ({ children }) => {
         }
     };
 
-    const getUserAppraisals = (name) => {
-        return AppraisalData.filter((val) => val.facultyName === name);
-    }
-
     return (
-        <UserContext.Provider value={{ email, setEmail, password, setPassword, login, userDetails, user, setUser, getUserAppraisals }}>
+        <UserContext.Provider value={{ email, setEmail, password, setPassword, login, userDetails, user, setUser }}>
             { children }
         </UserContext.Provider>
     )

@@ -90,12 +90,39 @@
         "isAdmin": false
     }, 
     {
-        "name": "User A",
-        "email": "userA@test.com",
-        "password": "userA",
-        "rank": 1,
-        "score": 128,
+        "name": "Shagun Sharma",
+        "email": "shagu@gmail.com",
+        "password": "shagu",
+        "rank": 11,
+        "score": 87,
         "pendingAppraisals": 10,
-        "isAdmin": true
+        "isAdmin": false
+    }, 
+    {
+        "name": "Upasna Sharma",
+        "email": "Upasna@gmail.com",
+        "password": "Upasna",
+        "rank": 13,
+        "score": 70,
+        "pendingAppraisals": 105,
+        "isAdmin": false
+    }, 
+    {
+        "name": "Yash Kumar Gupta",
+        "email": "ykgupta2411@gmail.com",
+        "password": "ykgupta2411",
+        "rank": 1,
+        "score": 6,
+        "pendingAppraisals": 13,
+        "isAdmin": false
+    }, 
+    {
+        "name": "Aditya Bhadade",
+        "email": "bhadadeaditya1310@gmail.com",
+        "password": "bhadadeaditya1310",
+        "rank": 10,
+        "score": 129,
+        "pendingAppraisals": 16,
+        "isAdmin": false
     } 
 ]
