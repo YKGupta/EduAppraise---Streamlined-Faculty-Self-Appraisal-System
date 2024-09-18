@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Dashboard",
+        "icon": "ion:home",
+        "path": "/home"
+    },
+    {
+        "name": "Appraisal Management",
+        "icon": "solar:document-bold",
+        "path": "/appraisalManagement"
+    },
+    {
+        "name": "Faculty Management",
+        "icon": "material-symbols:person",
+        "path": "/facultyManagement"
+    },
+    {
+        "name": "Report Generation",
+        "icon": "material-symbols:download",
+        "path": "/report"
+    },
+    {
+        "name": "Settings",
+        "icon": "material-symbols:settings",
+        "path": "/settings"
+    }
+]
